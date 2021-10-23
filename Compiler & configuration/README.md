@@ -13,7 +13,7 @@ tsc init
 tsc --watch
 ```
 
-### **Open the jsconfig.json**
+### **Open the jsconfig.json file**
 
 - ## Including and Excluding file
 
