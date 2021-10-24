@@ -25,7 +25,7 @@ tsc --watch
 
 ```
 
-- ## Setting Compilation target
+- ## Setting Compilation targets
 
 ```javascript
 "target": "es2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
