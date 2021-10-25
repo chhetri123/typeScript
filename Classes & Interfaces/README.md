@@ -135,7 +135,7 @@ class Man implements Person {
   }
 }
 ```
-</h6>
+
 <h4>
   <li> Why Interface? </li>
     </h4>
@@ -144,7 +144,7 @@ class Man implements Person {
 - It allows us to write truly powerful and flexiable code where we don't have to know everything about object , classes.
 - It help to create multiple type classes
 
-    </h6>
+    
 <h4>
 
   <li> Readonly Interface property </li>
@@ -158,7 +158,7 @@ interface Person {
   readonly name: string;
 }
 ```
-    </h6>
+    
 <h4>
   <li> Inheritance Interface property</li>
     </h4>
@@ -178,7 +178,7 @@ class Man implements Girls,Boys{
 
 }
 ```
-    </h6>
+    
 <h4>
   <li> Interface as Function Types </li>
     </h4>
