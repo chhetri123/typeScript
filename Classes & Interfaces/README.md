@@ -147,7 +147,7 @@ class Man implements Person {
     </h6>
 <h4>
 
-  <li> Readonly Interface property</li>
+  <li> Readonly Interface property </li>
     </h4>
 <h6>
 
@@ -194,11 +194,11 @@ let addS: Addfun;
 addS = (a: string, b: number) => a + b;
 console.log(addS("p", 2.5));
 ```
-    </h6>
+
 <h4> 
   <li> Interface as Object (Can have  optional param)</li>
     </h4>
-<h6>
+
 
 ```typescript
 interface Obj {
@@ -220,4 +220,4 @@ class Animal implements Obj {
 
 const an = new Animal();
 ```
-    </h6>
+
