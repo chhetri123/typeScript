@@ -113,7 +113,8 @@ const account = Accounting.getInstance();
 ##### Watch out the file **interfaces.ts** more details
 
 <h3>
-<li>  Using the Interface with classes
+  <li>  Using the Interface with classes</li>
+  <h3>
 <h6>
 
 ```typescript
@@ -134,17 +135,20 @@ class Man implements Person {
   }
 }
 ```
-
+</h6>
 <h4>
-<li> Why Interface?
+  <li> Why Interface? </li>
+    </h4>
 <h6>
 
 - It allows us to write truly powerful and flexiable code where we don't have to know everything about object , classes.
 - It help to create multiple type classes
 
+    </h6>
 <h4>
 
-<li> Readonly Interface property
+  <li> Readonly Interface property</li>
+    </h4>
 <h6>
 
 - we can can add readonly
@@ -154,9 +158,10 @@ interface Person {
   readonly name: string;
 }
 ```
-
+    </h6>
 <h4>
-<li> Inheritance Interface property
+  <li> Inheritance Interface property</li>
+    </h4>
 <h6>
 
 ```typescript
@@ -173,9 +178,11 @@ class Man implements Girls,Boys{
 
 }
 ```
-
+    </h6>
 <h4>
-<li> Interface as Function Types 
+  <li> Interface as Function Types </li>
+    </h4>
+  
 <h6>
 
 ```typescript
@@ -187,9 +194,10 @@ let addS: Addfun;
 addS = (a: string, b: number) => a + b;
 console.log(addS("p", 2.5));
 ```
-
+    </h6>
 <h4> 
-<li> Interface as Object (Can have  optional param)
+  <li> Interface as Object (Can have  optional param)</li>
+    </h4>
 <h6>
 
 ```typescript
@@ -212,3 +220,4 @@ class Animal implements Obj {
 
 const an = new Animal();
 ```
+    </h6>
