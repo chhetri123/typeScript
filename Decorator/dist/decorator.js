@@ -25,16 +25,33 @@ function Login(username) {
     };
 }
 function WithTemplate(template, hookId) {
-    return function (constructor) {
-        console.log("Rendering");
+    return function (originalConst) {
+        console.log("Teplate");
+        return class extends originalConst {
+            constructor(..._) {
+                super();
+                console.log("Rendering");
+                const element = document.getElementById(hookId);
+                if (element) {
+                    element.innerHTML = template;
+                    element.querySelector("h1").textContent =
+                        this.name;
+                }
+            }
+        };
     };
 }
-class Name {
+let Name = class Name {
     constructor() {
         this.name = "Manish";
         console.log("Creating account");
     }
-}
+};
+Name = __decorate([
+    WithTemplate("<h1>My person Object</h1>", "app")
+], Name);
+const person = new Name();
+console.log(person);
 function Log(target, propertyName) {
     console.log("property decorator");
     console.log(target, propertyName);
@@ -86,3 +103,89 @@ __decorate([
 ], Product.prototype, "getPricewithTax", null);
 const p1 = new Product("Book", 19);
 const p2 = new Product("copy", 20);
+function AutoBind(_, _2, descriptor) {
+    const originalMethod = descriptor.value;
+    const adjDescriptor = {
+        configurable: true,
+        enumerable: false,
+        get() {
+            const boundFun = originalMethod.bind(this);
+            return boundFun;
+        },
+    };
+    return adjDescriptor;
+}
+class Printer {
+    constructor() {
+        this.message = "this works";
+    }
+    showMessage() {
+        console.log(this.message);
+    }
+}
+__decorate([
+    AutoBind
+], Printer.prototype, "showMessage", null);
+const p = new Printer();
+const bottom = document.querySelector("button");
+bottom.addEventListener("click", p.showMessage);
+const registeredValidators = {};
+function Required(target, propName) {
+    registeredValidators[target.constructor.name] = {
+        ...registeredValidators[target.constructor.name],
+        [propName]: ["required"],
+    };
+}
+function Positive(target, propName) {
+    registeredValidators[target.constructor.name] = {
+        ...registeredValidators[target.constructor.name],
+        [propName]: ["positive"],
+    };
+}
+function validate(obj) {
+    const objValidatorConfig = registeredValidators[obj.constructor.name];
+    if (!objValidatorConfig) {
+        return true;
+    }
+    let isValid = true;
+    console.log(objValidatorConfig);
+    for (const prop in objValidatorConfig) {
+        for (const validator of objValidatorConfig[prop]) {
+            switch (validator) {
+                case "required":
+                    isValid = isValid && !!obj[prop];
+                    break;
+                case "positive":
+                    isValid = isValid && obj[prop] > 0;
+                    break;
+            }
+        }
+    }
+    return isValid;
+}
+class Course {
+    constructor(title, price) {
+        this.title = title;
+        this.price = price;
+    }
+}
+__decorate([
+    Required
+], Course.prototype, "title", void 0);
+__decorate([
+    Positive
+], Course.prototype, "price", void 0);
+const courceForm = document.querySelector("form");
+courceForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const titleEl = document.getElementById("title");
+    const priceEl = document.getElementById("price");
+    const title = titleEl.value;
+    const price = priceEl.value;
+    const createdCource = new Course(title, +price);
+    if (!validate(createdCource)) {
+        alert("Invalid Input");
+        return;
+    }
+    console.log(createdCource);
+});
